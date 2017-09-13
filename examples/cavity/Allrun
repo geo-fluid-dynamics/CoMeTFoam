@@ -13,7 +13,7 @@ runApplication blockMesh
 
 runApplication decomposePar
 
-runParallel $(getApplication) &
+runParallel $(getApplication)
 
 runApplication reconstructPar
 
