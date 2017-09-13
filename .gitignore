@@ -3,6 +3,8 @@
 .AppleDouble
 .LSOverride
 
+src/Make/linux*
+
 # Prerequisites
 *.d
 
