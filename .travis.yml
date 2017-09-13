@@ -16,7 +16,9 @@ before_install:
 
 install:
     - source /opt/openfoam${OF_VERS}/etc/bashrc
-    - ./Allwmake
+    - cd src
+    - wmake
+    - cd ..
 
 before_script:
     - source /opt/openfoam${OF_VERS}/etc/bashrc
