@@ -4,9 +4,16 @@ sudo: required
 dist: trusty
 language: cpp
 
+branches:
+    only:
+        - master
+  
+notifications:
+  email: false
+
 env:
-    - OF_VERS=4
     - OF_VERS=5
+    #- OF_VERS=4
 
 before_install:
     - sudo add-apt-repository http://dl.openfoam.org/ubuntu

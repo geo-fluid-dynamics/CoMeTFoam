@@ -1,4 +1,20 @@
 #!/usr/bin/env sh
 
 cd ${0%/*} || exit 1    # run from this directory
-echo "hello world"
+
+cp -rf ../examples/cavity .
+cd cavity
+mv system/controlDict system/controlDictOld
+sed -e 's!endTime         900;!endTime         100;!g' system/controlDictOld > system/controlDict;
+rm system/controlDictOld
+./Allrun
+
+if ! cmp -s ../cavityResult.txt postProcessing/surfaces/100/gamma_L_interface.raw > /dev/null 2>&1
+then
+	echo "Failed: Different results for cavity example" 
+    exit 1
+else
+	echo "Passed: Same results for cavity example"
+fi 
+
+cd ..
