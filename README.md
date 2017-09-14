@@ -138,9 +138,13 @@ to submit the job.
 ## Examples
 The examples, which are shown here can be found in the _examples_ folder.
 ### Stefan problem
+
 ![Stefan problem animation](docs/images/stefanProblemAnimation.gif)
+
 The following plot shows a comparison between the solution of _CoMeTFoam_ and the [analytical solution](https://github.com/geo-fluid-dynamics/benchmarks/tree/master/two-phase-stefan-problem) to the Stefan problem using the same thermo-physical properties.
+
 ![Stefan problem comparison](docs/images/stefanProblemComparison.png)
+
 The plot can be repoduced by
 ```
 cd examples/stefanProblem
