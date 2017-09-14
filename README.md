@@ -136,7 +136,7 @@ bsub < job.sh
 to submit the job.
 
 ## Examples
-The examples, which are shown here can be found in the _examples_ folder.
+The examples, which are shown here can be found in the [_examples_](https://github.com/geo-fluid-dynamics/CoMeTFoam/tree/feature/StefanProblem/examples) folder.
 ### Stefan problem
 
 ![Stefan problem animation](docs/images/stefanProblemAnimation.gif)
