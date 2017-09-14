@@ -8,12 +8,12 @@ Convection-diffusion phase change solver for OpenFOAM 5.0. It is based on the of
 Author: Kai Schüller (<schueller@aices.rwth-aachen.de>)
 
 ## Table of Contents
-- [Current capabilities](#currentcapabilities)
-- [Getting started](#gettingstarted)
-  - [OpenFOAM](#gettingstartedopenfoam)
-  - [CoMeTFoam](#gettingstartedcometfoam)
-- [Developer Instructions](#developerinstructions)
-- [RWTH Compute Cluster](#rwthcomputecluster)
+- [Current capabilities](#current-capabilities)
+- [Getting started](#getting-started)
+  - [OpenFOAM](#openfoam)
+  - [CoMeTFoam](#cometfoam-1)
+- [Developer Instructions](#developer-instructions)
+- [RWTH Compute Cluster](#rwth-compute-cluster)
 - [References](#references)
 
 ## Current capabilities
