@@ -18,3 +18,16 @@ else
 fi 
 
 cd ..
+
+cp -rf ../examples/stefanProblem .
+cd stefanProblem
+./ConvergenceTestRun
+
+if ! cmp -s ../stefanProblemResult.txt stefanProblem_1280/postProcessing/singleGraph/2000/line_T.xy > /dev/null 2>&1
+then
+	echo "Failed: Different results for Stefan problem example" 
+    exit 1
+else
+	echo "Passed: Same results for Stefan problem example"
+fi 
+cd ..
