@@ -14,6 +14,8 @@ Author: Kai Schüller (<schueller@aices.rwth-aachen.de>)
   - [CoMeTFoam](#cometfoam-1)
 - [Developer Instructions](#developer-instructions)
 - [RWTH Compute Cluster](#rwth-compute-cluster)
+- [Examples](#examples)
+  - [Stefan problem](#stefan-problem)
 - [References](#references)
 
 ## Current capabilities
@@ -132,6 +134,25 @@ A better practice is to submit a job to the cluster. An example of a job script 
 bsub < job.sh
 ```
 to submit the job.
+
+## Examples
+The examples, which are shown here can be found in the _examples_ folder.
+### Stefan problem
+![Stefan problem animation](docs/images/stefanProblemAnimation.gif)
+The following plot shows a comparison between the solution of _CoMeTFoam_ and the [analytical solution](https://github.com/geo-fluid-dynamics/benchmarks/tree/master/two-phase-stefan-problem) to the Stefan problem using the same thermo-physical properties.
+![Stefan problem comparison](docs/images/stefanProblemComparison.png)
+The plot can be repoduced by
+```
+cd examples/stefanProblem
+./ConvergenceTestRun
+python createPlots.py
+```
+The scripts first create copies of the folder _stefanProblem_ with different number of cells (320, 640, 1280 cells) and then runs _CoMeTFoam_ for each case.
+Additionally the order of grid convergence can be calculated using
+```
+python calcConvergence.py
+```
+which yields 1.45869745565 for the considered meshes (320, 640, 1280 cells).
 
 ## References
 - Rösler, Fabian. _Modellierung und simulation der phasenwechselvorgänge in makroverkapselten latenten thermischen speichern_. Vol. 24. Logos Verlag Berlin GmbH, 2014.
