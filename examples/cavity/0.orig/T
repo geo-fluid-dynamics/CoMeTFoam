@@ -40,7 +40,7 @@ boundaryField
         type            fixedValue;
 	value           uniform 303.65;
     }
-    defaultFaces
+    frontAndBack
     {
         type            empty;
     }
