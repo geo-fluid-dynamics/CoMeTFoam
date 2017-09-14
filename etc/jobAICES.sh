@@ -20,6 +20,8 @@
  
 ### Use esub for Open MPI
 #BSUB -a openmpi
+
+#BSUB -P aices
  
 module load TECHNICS
 module load openfoam/5.0
