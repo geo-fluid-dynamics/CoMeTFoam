@@ -16,13 +16,10 @@ Author: Kai Schüller (<schueller@aices.rwth-aachen.de>)
 - [RWTH Compute Cluster](#rwthcomputecluster)
 - [References](#references)
 
-<a name="currentcapabilities"/>
 ## Current capabilities
 
-<a name="gettingstarted"/>
 ## Getting started
 
-<a name="gettingstartedopenfoam"/>
 ### OpenFOAM
 CoMeTFoam is a custom solver for [OpenFOAM](https://openfoam.org). Therefore it must be installed first. Depending on the operating system (Ubuntu, Linux, MacOS, Windows using Windows Subsystem for Linux with Ubuntu packs), different options are available, which are very good described on the official [download page](https://openfoam.org/version/5-0/).
 
@@ -59,7 +56,6 @@ blockMesh
 simpleFoam
 ```
 
-<a name="gettingstartedcometfoam"/>
 ### CoMeTFoam
 1) Download CoMeTFoam
 ```
@@ -76,7 +72,6 @@ cd ../tests
 ./Alltest
 ```
 
-<a name="developerinstructions"/>
 ## Developer Instructions
 1) [Fork this repository](https://github.com/geo-fluid-dynamics/CoMeTFoam/fork)
 
@@ -104,7 +99,6 @@ git push origin yournewbranch
 ```
 7) Finally, [create a pull request](https://help.github.com/articles/creating-a-pull-request).
 
-<a name="rwthcomputecluster"/>
 ## RWTH Compute Cluster
 In this section, we describe how to use CoMeTFoam on the RWTH Compute Cluster. If you don't have access, you can skip this section. However, if you have access to a different Compute Cluster some steps might be similar.
 ```
@@ -139,6 +133,5 @@ bsub < job.sh
 ```
 to submit the job.
 
-<a name="references"/>
 ## References
 - Rösler, Fabian. _Modellierung und simulation der phasenwechselvorgänge in makroverkapselten latenten thermischen speichern_. Vol. 24. Logos Verlag Berlin GmbH, 2014.
