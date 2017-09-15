@@ -97,6 +97,7 @@ To give an example, we will now discuss how to choose the correct parameters for
 |353.15 (80 °C)|0.365|
 |363.15 (90 °C)|0.326|
 |373.15 (100 °C)|0.294|
+
 source: [engineeringtoolbox](http://www.engineeringtoolbox.com/water-dynamic-kinematic-viscosity-d_596.html)
 
 We can approximate those tabular values with the following equation
@@ -104,9 +105,9 @@ We can approximate those tabular values with the following equation
 ![equation](https://latex.codecogs.com/gif.latex?%5Cnu%3D%5Cfrac%7B1%7D%7B%5Cnu_a&plus;%5Cnu_bT&plus;%5Cnu_cT%5E2%7D)
 
 Curve fitting yields for the tabular data:
-- nua = -2.327547e+05
-- nub = -1.608951e+04
-- nuc = 6.931645e+01
+- nua = -2.327547e+05 s/m^2
+- nub = -1.608951e+04 s/m^2/K
+- nuc = 6.931645e+01 s/m^2/K^2
 
 ![Kinematic viscosity over temperature](docs/images/kinViscosityOverTemperature.png)
 
