@@ -12,10 +12,13 @@ Author: Kai Schüller (<schueller@aices.rwth-aachen.de>)
 - [Getting started](#getting-started)
   - [OpenFOAM](#openfoam)
   - [CoMeTFoam](#cometfoam-1)
+- [User instructions](#user-instructions)
+  - [Setting the viscosity](#setting-the-viscosity)
 - [Developer Instructions](#developer-instructions)
 - [RWTH Compute Cluster](#rwth-compute-cluster)
 - [Examples](#examples)
   - [Stefan problem](#stefan-problem)
+  - [Cavity melting](#cavity-melting)
 - [References](#references)
 
 ## Current capabilities
@@ -72,9 +75,42 @@ wmake
 ```
 cd ../tests
 ./Alltest
+
 ```
 
-## Developer Instructions
+## User instructions
+### Setting the viscosity
+_CoMeTFoam_ provides the option to set a temperature dependent kinematic viscosity. This can be done by changing the values of _nua_, _nub_ and _nuc_ in _constant/transportProperties_.
+
+To give an example, we will now discuss how to choose the correct parameters for pure water. Its kinematic viscosity is summarized in the following table.
+
+|Temperature [K]|kin. Viscosity [10^(-6) m^2/s]|
+|-|-|
+|273.15 (0 °C)|1.787|
+|283.15 (10 °C)|1.307|
+|293.15 (20 °C)|1.004|
+|303.15 (30 °C)|0.801|
+|313.15 (40 °C)|0.658|
+|323.15 (50 °C)|0.553|
+|333.15 (60 °C)|0.475|
+|343.15 (70 °C)|0.413|
+|353.15 (80 °C)|0.365|
+|363.15 (90 °C)|0.326|
+|373.15 (100 °C)|0.294|
+source: [engineeringtoolbox](http://www.engineeringtoolbox.com/water-dynamic-kinematic-viscosity-d_596.html)
+
+We can approximate those tabular values with the following equation
+
+![equation](https://latex.codecogs.com/gif.latex?%5Cnu%3D%5Cfrac%7B1%7D%7B%5Cnu_a&plus;%5Cnu_bT&plus;%5Cnu_cT%5E2%7D)
+
+Curve fitting yields for the tabular data:
+- nua = -2.327547e+05
+- nub = -1.608951e+04
+- nuc = 6.931645e+01
+
+![Kinematic viscosity over temperature](docs/images/kinViscosityOverTemperature.png)
+
+## Developer instructions
 1) [Fork this repository](https://github.com/geo-fluid-dynamics/CoMeTFoam/fork)
 
 2) Check out the source code with:
@@ -157,6 +193,11 @@ Additionally the order of grid convergence can be calculated using
 python calcConvergence.py
 ```
 which yields 1.45869745565 for the considered meshes (320, 640, 1280 cells).
+
+### Cavity melting
+Two cavity melting examples are provided - _cavity_ and _cavityVarViscosity_. The first one uses a constant kinematic viscosity, whereas the latter uses a temperature dependent kinematic viscosity. The following picture shows the difference of those two cases.
+
+![Comparison constant and variable viscosity cavity melting](docs/images/comparisonConstantAndVariableViscosity.png)
 
 ## References
 - Rösler, Fabian. _Modellierung und simulation der phasenwechselvorgänge in makroverkapselten latenten thermischen speichern_. Vol. 24. Logos Verlag Berlin GmbH, 2014.

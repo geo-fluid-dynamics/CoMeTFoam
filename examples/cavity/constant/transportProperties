@@ -22,7 +22,12 @@ rho             	rho [1 -3 0 0 0 0 0] 999.845079;
 //liquid phase
 cp_L             	cpl [0 2 -2 -1 0 0 0] 4200;
 k_L         	 	k_L [1 1 -3 -1 0 0 0] 0.56;
-nu              	nu [0 2 -1 0 0 0 0] 1.787e-06;
+
+// kinematic viscosity polynomial (nu=nua+nub*T+nuc*T^2)
+nu              	nu [0 2 -1 0 0 0 0] 1.307e-06; // required, but will be overwritten during runtime
+nua					nua [0 -2 1 0 0 0 0] 7.651109e+05; // viscosity for T=283.18 K
+nub					nub [0 -2 1 -1 0 0 0] 0;
+nuc					nuc [0 -2 1 -2 0 0 0] 0;
 
 //solid phase
 cp_S            	cps [0 2 -2 -1 0 0 0] 2060;

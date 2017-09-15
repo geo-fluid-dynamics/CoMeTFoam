@@ -25,9 +25,9 @@ k_L         	 	k_L [1 1 -3 -1 0 0 0] 0.56;
 
 // kinematic viscosity polynomial (nu=nua+nub*T+nuc*T^2)
 nu              	nu [0 2 -1 0 0 0 0] 1.787e-06; // required, but will be overwritten during runtime
-nua					nua [0 -2 1 0 0 0 0] 5.5960e+05;
-nub					nub [0 -2 1 -1 0 0 0] 0;
-nuc					nuc [0 -2 1 -2 0 0 0] 0;
+nua					nua [0 -2 1 0 0 0 0] -2.327547e+05;
+nub					nub [0 -2 1 -1 0 0 0] -1.608951e+04;
+nuc					nuc [0 -2 1 -2 0 0 0] 6.931645e+01;
 
 //solid phase
 cp_S            	cps [0 2 -2 -1 0 0 0] 2060;
@@ -35,8 +35,8 @@ k_S             	k_S [1 1 -3 -1 0 0 0] 2.33;
 beta            	beta [0 0 0 -1 0 0 0] 1.0;
 
 TRef            	TRef [0 0 0 1 0 0 0] 273.1;
-T_S             	T_S [0 0 0 1 0 0 0] 273.14;
-T_L             	T_L [0 0 0 1 0 0 0] 273.16;
+T_S             	T_S [0 0 0 1 0 0 0] 273.1;
+T_L             	T_L [0 0 0 1 0 0 0] 273.15;
 h_m             	h_m [0 2 -2 0 0 0 0] 333700;
 DarcyConstant   	DarcyConstant [1 -3 -1 0 0 0 0] 1.0e8;
 DarcyTerm_epsilon	DarcyTerm_epsilon [0 0 0 0 0 0 0] 1e-06;
