@@ -87,6 +87,17 @@ volScalarField cp
 );
 cp.oldTime();
 
+volScalarField nu
+(
+    IOobject
+    (
+        "nu",
+        runTime.timeName(),
+        mesh
+    ),
+    1/(nua+nub*T+nuc*pow(T,2))
+);
+
 surfaceScalarField phiCp
 (
     IOobject

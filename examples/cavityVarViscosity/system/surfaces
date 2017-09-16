@@ -1,0 +1,33 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  5                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+surfaces
+{
+    type            surfaces;
+    libs            ("libsampling.so");
+    writeControl    writeTime;
+
+    surfaceFormat   raw;
+    fields          (gamma_L);
+
+    interpolationScheme cellPoint;
+
+    surfaces
+    (
+        interface
+        {
+            type            isoSurface;
+            isoField        gamma_L;
+            isoValue        0.5;
+            interpolate     true;
+        }
+    );
+}
+
+
+// ************************************************************************* //

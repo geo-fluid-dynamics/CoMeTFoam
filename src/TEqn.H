@@ -51,7 +51,7 @@
 
     // rhok (parabolic density profile) for pure water
     rhok = 1/999.845079*(999.845079+0.06378*max(beta*(T-T_m),scalar(0))-0.0080125*max(beta*(T-T_m),scalar(0))*max(beta*(T-T_m),scalar(0)));
-
+    nu = 1/(nua+nub*T+nuc*pow(T,2));
     DarcyTerm = DarcyConstant*pow(scalar(1)-gamma_L,2)/(pow(gamma_L,3)+DarcyTerm_epsilon);
 
 }

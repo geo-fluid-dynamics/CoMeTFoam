@@ -50,7 +50,10 @@ dimensionedScalar DarcyConstant(transportProperties.lookup("DarcyConstant"));
 dimensionedScalar DarcyTerm_epsilon(transportProperties.lookup("DarcyTerm_epsilon"));
 
 // Reading kinematic viscosity
-dimensionedScalar nu(transportProperties.lookup("nu"));
+dimensionedScalar nua(transportProperties.lookup("nua"));
+dimensionedScalar nub(transportProperties.lookup("nub"));
+dimensionedScalar nuc(transportProperties.lookup("nuc"));
+
 
 // Reference temperature [K]
 dimensionedScalar TRef("TRef", dimTemperature, laminarTransport);

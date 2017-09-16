@@ -19,6 +19,27 @@ fi
 
 cd ..
 
+####
+
+cp -rf ../examples/cavityVarViscosity .
+cd cavityVarViscosity
+mv system/controlDict system/controlDictOld
+sed -e 's!endTime         900;!endTime         100;!g' system/controlDictOld > system/controlDict;
+rm system/controlDictOld
+./Allrun
+
+if ! cmp -s ../cavityVarViscosityResult.txt postProcessing/surfaces/100/gamma_L_interface.raw > /dev/null 2>&1
+then
+	echo "Failed: Different results for cavityVarViscosity example" 
+    exit 1
+else
+	echo "Passed: Same results for cavityVarViscosity example"
+fi 
+
+cd ..
+
+####
+
 cp -rf ../examples/stefanProblem .
 cd stefanProblem
 ./ConvergenceTestRun
