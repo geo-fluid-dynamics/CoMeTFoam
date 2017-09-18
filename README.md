@@ -14,6 +14,7 @@ Author: Kai Schüller (<schueller@aices.rwth-aachen.de>)
   - [CoMeTFoam](#cometfoam-1)
 - [User instructions](#user-instructions)
   - [Setting the viscosity](#setting-the-viscosity)
+  - [Setting the density](#setting-the-density)
 - [Developer Instructions](#developer-instructions)
 - [RWTH Compute Cluster](#rwth-compute-cluster)
 - [Examples](#examples)
@@ -111,6 +112,9 @@ Curve fitting yields for the tabular data:
 
 ![Kinematic viscosity over temperature](docs/images/kinViscosityOverTemperature.png)
 
+### Setting the density
+
+
 ## Developer instructions
 1) [Fork this repository](https://github.com/geo-fluid-dynamics/CoMeTFoam/fork)
 
@@ -193,7 +197,7 @@ Additionally the order of grid convergence can be calculated using
 ```
 python calcConvergence.py
 ```
-which yields 1.45869745565 for the considered meshes (320, 640, 1280 cells).
+which yields 1.45834902755 for the considered meshes (320, 640, 1280 cells).
 
 ### Cavity melting
 Two cavity melting examples are provided - _cavity_ and _cavityVarViscosity_. The first one uses a constant kinematic viscosity, whereas the latter uses a temperature dependent kinematic viscosity. The following picture shows the difference of those two cases.

@@ -35,15 +35,15 @@ divSchemes
 {
     default         none;
     div(phi,U)       Gauss linearUpwindV grad(U);
-    div(phi*cp,T)    Gauss linearUpwind grad(T);
-    div(phi,gamma_L) Gauss vanLeer01;
+    div(rhomix*phi*cp,T)    Gauss linearUpwind grad(T);
+    div(rhomix*phi,gamma_L) Gauss vanLeer01;
     div(phi*cp)      Gauss linearUpwind;
 }
 
 laplacianSchemes
 {
     default                    none;
-    laplacian((k|rho),T)       Gauss linear corrected;
+    laplacian(k,T)       Gauss linear corrected;
     laplacian(nu,U)            Gauss linear corrected;
     laplacian((1|A(U)),p_rgh)  Gauss linear corrected;
     laplacian(rAUf,p_rgh)      Gauss linear corrected;

@@ -17,13 +17,28 @@ FoamFile
 
 transportModel Newtonian;
 
-rho             	rho [1 -3 0 0 0 0 0] 999.845079;
+rho             	rho [1 -3 0 0 0 0 0] 999.79684;
 
 //liquid phase
-cp_L             	cpl [0 2 -2 -1 0 0 0] 4200;
+cp_L             	cp_L [0 2 -2 -1 0 0 0] 4200;
 k_L         	 	k_L [1 1 -3 -1 0 0 0] 0.56;
 
+// liquid density polynomial (rho_L=rho_La+rho_Lb*(T-TRef_rho_L)+rho_Lc*(T-TRef_rho_L)^2)
+TRef_rho_L			TRef_rho_L [0 0 0 1 0 0 0] 273.15;
+rho_La				rho_La [1 -3 0 0 0 0 0] 999.79684;
+rho_Lb				rho_Lb [1 -3 0 -1 0 0 0] 0.0;
+rho_Lc				rho_Lc [1 -3 0 -2 0 0 0] 0.0;
+rho_Ld				rho_Ld [1 -3 0 -2.5 0 0 0] 0.0;
+rho_Le				rho_Le [1 -3 0 -3 0 0 0] 0.0;
+
+// solid density polynomial (rho_S=rho_Sa+rho_Sb*T+rho_Sc*T^2)
+TRef_rho_S			TRef_rho_S [0 0 0 1 0 0 0] 273.15;
+rho_Sa				rho_Sa [1 -3 0 0 0 0 0] 999.79684;
+rho_Sb				rho_Sb [1 -3 0 -1 0 0 0] 0.0;
+rho_Sc				rho_Sc [1 -3 0 -2 0 0 0] 0.0;
+
 // kinematic viscosity polynomial (nu=nua+nub*T+nuc*T^2)
+TRef_nu				TRef_nu [0 0 0 1 0 0 0] 0.0;
 nu              	nu [0 2 -1 0 0 0 0] 1.787e-06; // required, but will be overwritten during runtime
 nua					nua [0 -2 1 0 0 0 0] 5.5960e+05;
 nub					nub [0 -2 1 -1 0 0 0] 0;
