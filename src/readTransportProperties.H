@@ -10,6 +10,8 @@ IOdictionary transportProperties
     )
 );
 
+dimensionedScalar pi = constant::mathematical::pi;
+
 singlePhaseTransportModel laminarTransport(U, phi);
 
 // Thermal expansion coefficient [1/K]

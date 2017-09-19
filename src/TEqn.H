@@ -37,23 +37,47 @@
         k = gamma_L*(k_La+k_Lb*(T-TRef_k_L)+k_Lc*pow(T-TRef_k_L,2))
             + (scalar(1) - gamma_L)*(k_Sa+k_Sb*(T-TRef_k_S)+k_Sc*pow(T-TRef_k_S,2));
 
-        fvScalarMatrix TEqn
-        (
-            fvm::ddt(rhomixCp,T)
-          + fvm::div(rhomixPhiCp, T)
-          + h_m*fvc::ddt(rhomix,gamma_L)
-          + h_m*fvc::div(rhomixPhi, gamma_L)
-          - T_m*fvc::ddt(rhomixCp)
-          - T_m*fvc::div(rhomixPhiCp)
-          - fvm::laplacian(k, T)
-        );
+        if(1){
+            fvScalarMatrix TEqn
+            (
+                fvm::ddt(rhomixCp,T)
+              + fvm::div(rhomixPhiCp, T)
+              + h_m*fvc::ddt(rhomix,gamma_L)
+              + h_m*fvc::div(rhomixPhi, gamma_L)
+              - T_m*fvc::ddt(rhomixCp)
+              - T_m*fvc::div(rhomixPhiCp)
+              - fvm::laplacian(k, T)
+            );
 
-        TEqn.relax();
+            TEqn.relax();
 
-        TEqn.solve();
+            TEqn.solve();
 
-        Tcons = (T_L-T_S)*gamma_L+T_S;
-        gamma_L = max(min(gamma_L + relaxGamma*cp/h_m*(T - Tcons),scalar(1)),scalar(0));
+            Tcons = (T_L-T_S)*gamma_L+T_S;
+            gamma_L = max(min(gamma_L + relaxGamma*cp/h_m*(T - Tcons),scalar(1)),scalar(0));
+        }else{
+            fvScalarMatrix TEqn
+            (
+                fvm::ddt(rhomixCp,T)
+              + fvm::div(rhomixPhiCp, T)
+              //
+              + rhomix*h_m*4.0*exp(-pow(4.0*(T-T_m)/(T_L-T_S),2))/Foam::sqrt(pi)/(T_L-T_S)*fvm::ddt(T)
+              + h_m*(0.5*Foam::erf(4.0*(T-T_m)/(T_L-T_S))+scalar(0.5))*fvc::ddt(rhomix)
+              //
+              + rhomix*h_m*4.0*exp(-pow(4.0*(T-T_m)/(T_L-T_S),2))/Foam::sqrt(pi)/(T_L-T_S)*(U & fvc::grad(T))
+              + h_m*(0.5*Foam::erf(4.0*(T-T_m)/(T_L-T_S))+scalar(0.5))*fvc::div(rhomixPhi)
+              //+ h_m*fvc::ddt(rhomix,gamma_L)
+              //+ h_m*fvc::div(rhomixPhi, gamma_L)
+              - T_m*fvc::ddt(rhomixCp)
+              - T_m*fvc::div(rhomixPhiCp)
+              - fvm::laplacian(k, T)
+            );
+
+            TEqn.relax();
+
+            TEqn.solve();
+            gamma_L = 0.5*Foam::erf(4.0*(T-T_m)/(T_L-T_S))+scalar(0.5);
+        }
 
         residual = gMax(mag(gamma_L.primitiveField() - gamma_L.prevIter().primitiveField()));
 
