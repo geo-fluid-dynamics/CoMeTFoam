@@ -24,7 +24,8 @@
                                       +rho_Sc*pow(T-TRef_rho_L,2));
 
         // mixture specific heat
-        cp = cp_L*gamma_L + cp_S*(scalar(1) - gamma_L);
+        cp = gamma_L*(cp_La+cp_Lb*(T-TRef_cp_L)+cp_Lc*pow(T-TRef_cp_L,2)) 
+            + (scalar(1) - gamma_L)*(cp_Sa+cp_Sb*(T-TRef_cp_S)+cp_Sc*pow(T-TRef_cp_S,2));
 
         rhomixPhiCp = fvc::interpolate(cp)*phi*fvc::interpolate(rhomix);
 
@@ -33,7 +34,8 @@
         rhomixCp = rhomix*cp;
 
         // mixture thermal conductivity
-        k = k_L*gamma_L + k_S*(scalar(1) - gamma_L);
+        k = gamma_L*(k_La+k_Lb*(T-TRef_k_L)+k_Lc*pow(T-TRef_k_L,2))
+            + (scalar(1) - gamma_L)*(k_Sa+k_Sb*(T-TRef_k_S)+k_Sc*pow(T-TRef_k_S,2));
 
         fvScalarMatrix TEqn
         (

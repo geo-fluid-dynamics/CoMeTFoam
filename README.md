@@ -15,6 +15,7 @@ Author: Kai Schüller (<schueller@aices.rwth-aachen.de>)
 - [User instructions](#user-instructions)
   - [Setting the viscosity](#setting-the-viscosity)
   - [Setting the density](#setting-the-density)
+  - [Setting the specific heat and thermal conductivity](#setting-the-specific-heat-and-thermal-conductivity)
 - [Developer Instructions](#developer-instructions)
 - [RWTH Compute Cluster](#rwth-compute-cluster)
 - [Examples](#examples)
@@ -23,6 +24,12 @@ Author: Kai Schüller (<schueller@aices.rwth-aachen.de>)
 - [References](#references)
 
 ## Current capabilities
+- Convection-diffusion phase change
+- Temperature dependent properties
+  - density
+  - thermal conductivity
+  - specific heat
+  - kinematic viscosity
 
 ## Getting started
 
@@ -157,6 +164,35 @@ Curve fitting yields for the tabular data:
 - rho_Sb = -1.652339e-1 kg/m^3/K
 - rho_Sc = -4.320109e-4 kg/m^3/K^2
 - TRef_rho_S = 273.15 K
+
+### Setting the specific heat and thermal conductivity
+The thermal conductivity and the specific heats are approximated by quadratic polynomials of degree that fit the following tabular data
+
+|Temperature [°C]|Therm. conductivity [W/m/K]|Specific heat [J/kg/K]|Phase|
+|-|-|-|-|
+|90 | 0.6753| 4205.2 | Liquid |
+|80 | 0.6700| 4196.8 | Liquid |
+|70 | 0.6631| 4190.1 | Liquid |
+|60 | 0.6544| 4185.0 | Liquid |
+|50 | 0.6436| 4181.3 | Liquid |
+|40 | 0.6306| 4179.4 | Liquid |
+|30 | 0.6155| 4179.8 | Liquid |
+|20 | 0.5985| 4184.1 | Liquid |
+|10 | 0.5800| 4195.2 | Liquid |
+|0.01 | 0.5611| 4219.4 | Liquid |
+|0 | 2.14| 2110 | Solid |
+|-10 | 2.3| 2030 | Solid |
+|-20 | 2.4| 1960 | Solid |
+|-30 | 2.5| 1880 | Solid |
+|-40 | 2.6| 1800 | Solid |
+|-50 | 2.8| 1720 | Solid |
+|-60 | 3.0| 1650 | Solid |
+|-80 | 3.3| 1500 | Solid |
+|-100 | 3.7| 1360 | Solid |
+
+source: Lide, David R.: CRC Handbook of Chemistry and Physics. 90th Edition (Internet Version 2010). Boca Raton, FL. : CRC Press/Taylor and Francis, 2010.
+
+The resulting coefficients for the quadratic polynomials are given in _examples/cavity/constant/transportProperties_
 
 ## Developer instructions
 1) [Fork this repository](https://github.com/geo-fluid-dynamics/CoMeTFoam/fork)
