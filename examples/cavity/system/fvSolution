@@ -74,9 +74,9 @@ PIMPLE
 
 PHASECHANGE
 {
-    minTiter 3;
-    maxTiter 150;
-    gamma_L_Tol 1e-8;
+    minTiter 2;
+    maxTiter 100;
+    gamma_L_Tol 1e-6;
     relaxGamma_L 0.7;
 }
 
