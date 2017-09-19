@@ -87,6 +87,24 @@ volScalarField cp
 );
 cp.oldTime();
 
+volScalarField rhomix
+(
+    IOobject
+    (
+        "rhomix",
+        runTime.timeName(),
+        mesh
+    ),
+    gamma_L*(rho_La
+            +rho_Lb*max(T-TRef_rho_L,TRef_rho_L*scalar(0))
+            +rho_Lc*pow(max(T-TRef_rho_L,TRef_rho_L*scalar(0)),2)
+            +rho_Ld*pow(max(T-TRef_rho_L,TRef_rho_L*scalar(0)),2.5)
+            +rho_Le*pow(max(T-TRef_rho_L,TRef_rho_L*scalar(0)),3))
+    +(scalar(1)-gamma_L)*(rho_Sa
+                          +rho_Sb*(T-TRef_rho_L)
+                          +rho_Sc*pow(T-TRef_rho_L,2))
+);
+
 volScalarField nu
 (
     IOobject
@@ -98,15 +116,37 @@ volScalarField nu
     1/(nua+nub*T+nuc*pow(T,2))
 );
 
-surfaceScalarField phiCp
+volScalarField rhomixCp
 (
     IOobject
     (
-        "phi*cp",
+        "rhomix*cp",
         runTime.timeName(),
         mesh
     ),
-    phi*fvc::interpolate(cp)
+    rhomix*cp
+);
+
+surfaceScalarField rhomixPhiCp
+(
+    IOobject
+    (
+        "rhomix*phi*cp",
+        runTime.timeName(),
+        mesh
+    ),
+    phi*fvc::interpolate(cp)*fvc::interpolate(rhomix)
+);
+
+surfaceScalarField rhomixPhi
+(
+    IOobject
+    (
+        "rhomix*phi",
+        runTime.timeName(),
+        mesh
+    ),
+    phi*fvc::interpolate(rhomix)
 );
 
 // Kinematic density for buoyancy force

@@ -14,6 +14,7 @@ Author: Kai Schüller (<schueller@aices.rwth-aachen.de>)
   - [CoMeTFoam](#cometfoam-1)
 - [User instructions](#user-instructions)
   - [Setting the viscosity](#setting-the-viscosity)
+  - [Setting the density](#setting-the-density)
 - [Developer Instructions](#developer-instructions)
 - [RWTH Compute Cluster](#rwth-compute-cluster)
 - [Examples](#examples)
@@ -79,8 +80,10 @@ cd ../tests
 ```
 
 ## User instructions
+The default thermo-physical properties are those of a pure water-ice PCM. All of them can be modified in _constant/transportProperties_, which will be described in the following subsections.
+
 ### Setting the viscosity
-_CoMeTFoam_ provides the option to set a temperature dependent kinematic viscosity. This can be done by changing the values of _nua_, _nub_ and _nuc_ in _constant/transportProperties_.
+_CoMeTFoam_ provides the option to set a temperature dependent kinematic viscosity. This can be done by changing the values of _nua_, _nub_ and _nuc_.
 
 To give an example, we will now discuss how to choose the correct parameters for pure water. Its kinematic viscosity is summarized in the following table.
 
@@ -102,14 +105,58 @@ source: [engineeringtoolbox](http://www.engineeringtoolbox.com/water-dynamic-kin
 
 We can approximate those tabular values with the following equation
 
-![equation](https://latex.codecogs.com/gif.latex?%5Cnu%3D%5Cfrac%7B1%7D%7B%5Cnu_a&plus;%5Cnu_bT&plus;%5Cnu_cT%5E2%7D)
+![equation](http://latex.codecogs.com/gif.latex?%5Cnu%3D%5Cfrac%7B1%7D%7B%5Cnu_Sa&plus;%5Cnu_b%28T-T_%7Bref%2C%5Cnu%7D%29&plus;%5Cnu_c%28T-T_%7Bref%2C%5Cnu%7D%29%5E2%7D)
 
 Curve fitting yields for the tabular data:
 - nua = -2.327547e+05 s/m^2
 - nub = -1.608951e+04 s/m^2/K
 - nuc = 6.931645e+01 s/m^2/K^2
+- TRef_nu = 0 K
 
 ![Kinematic viscosity over temperature](docs/images/kinViscosityOverTemperature.png)
+
+### Setting the density
+The user has the option to set the densities (solid and liquid) in _constant/transportProperties_ by changing the coefficients of polynomials.
+
+#### Liquid density
+For the liquid PCM, the density polynomial is
+
+![](http://latex.codecogs.com/gif.latex?%5Crho_L%3D%5Crho_%7BL%2Ca%7D&plus;%5Crho_%7BL%2Cb%7D%28T-T_%7Bref%2C%5Crho_L%7D%29&plus;%5Crho_%7BL%2Cc%7D%28T-T_%7Bref%2C%5Crho_L%7D%29%5E2&plus;%5Crho_%7BL%2Cd%7D%28T-T_%7Bref%2C%5Crho_L%7D%29%5E%7B2.5%7D&plus;%5Crho_%7BL%2Ce%7D%28T-T_%7Bref%2C%5Crho_L%7D%29%5E3)
+
+with:
+- rho_La = 999.79684 kg/m^3
+- rho_Lb = 0.068317355 kg/m^3/K
+- rho_Lc = -0.010740248 kg/m^3/K^2
+- rho_Ld = 0.00082140905 kg/m^3/K^2.5
+- rho_Le = -2.3030988e-5 kg/m^3/K^3
+- TRef_rho_L = 273.15 K
+
+These values include the density anomaly (maximum density) of water near 4 °C.
+
+source: Popiel, C. O., and J. Wojtkowiak. "Simple formulas for thermophysical properties of liquid water for heat transfer calculations (from 0 C to 150 C)." Heat transfer engineering 19.3 (1998): 87-101.
+
+#### Solid density
+|Temperature [°C]|Solid density [kg/m^3]|
+|-|-|
+|0 | 916.7|
+|-10 | 918.7 |
+|-20 | 920.3 |
+|-30 | 921.6 |
+| -40 | 922.8 |
+| -50 | 924.0 |
+| -60 | 925.2 |
+| -80 | 927.4 |
+| -100 | 929.2 |
+
+source: Lide, David R.: CRC Handbook of Chemistry and Physics. 90th Edition (Internet Version 2010). Boca Raton, FL. : CRC Press/Taylor and Francis, 2010.
+
+![](http://latex.codecogs.com/gif.latex?%5Crho_S%3D%5Crho_%7BS%2Ca%7D&plus;%5Crho_%7BS%2Cb%7D%28T-T_%7Bref%2C%5Crho_S%7D%29&plus;%5Crho_%7BS%2Cc%7D%28T-T_%7Bref%2C%5Crho_S%7D%29%5E2)
+
+Curve fitting yields for the tabular data:
+- rho_Sa = 9.169417e+2 kg/m^3
+- rho_Sb = -1.652339e-1 kg/m^3/K
+- rho_Sc = -4.320109e-4 kg/m^3/K^2
+- TRef_rho_S = 273.15 K
 
 ## Developer instructions
 1) [Fork this repository](https://github.com/geo-fluid-dynamics/CoMeTFoam/fork)
@@ -193,7 +240,7 @@ Additionally the order of grid convergence can be calculated using
 ```
 python calcConvergence.py
 ```
-which yields 1.45869745565 for the considered meshes (320, 640, 1280 cells).
+which yields 1.45834902755 for the considered meshes (320, 640, 1280 cells).
 
 ### Cavity melting
 Two cavity melting examples are provided - _cavity_ and _cavityVarViscosity_. The first one uses a constant kinematic viscosity, whereas the latter uses a temperature dependent kinematic viscosity. The following picture shows the difference of those two cases.
