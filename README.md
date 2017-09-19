@@ -105,7 +105,7 @@ source: [engineeringtoolbox](http://www.engineeringtoolbox.com/water-dynamic-kin
 
 We can approximate those tabular values with the following equation
 
-![equation](http://latex.codecogs.com/gif.latex?%5Cnu%3D%5Cfrac%7B1%7D%7B%5Cnu_Sa&plus;%5Cnu_b%28T-T_%7Bref%2C%5Cnu%7D%29&plus;%5Cnu_c%28T-T_%7Bref%2C%5Cnu%7D%29%5E2%7D)
+![](docs/images/equations/viscosity.png)
 
 Curve fitting yields for the tabular data:
 - nua = -2.327547e+05 s/m^2
@@ -121,7 +121,7 @@ The user has the option to set the densities (solid and liquid) in _constant/tra
 #### Liquid density
 For the liquid PCM, the density polynomial is
 
-![](http://latex.codecogs.com/gif.latex?%5Crho_L%3D%5Crho_%7BL%2Ca%7D&plus;%5Crho_%7BL%2Cb%7D%28T-T_%7Bref%2C%5Crho_L%7D%29&plus;%5Crho_%7BL%2Cc%7D%28T-T_%7Bref%2C%5Crho_L%7D%29%5E2&plus;%5Crho_%7BL%2Cd%7D%28T-T_%7Bref%2C%5Crho_L%7D%29%5E%7B2.5%7D&plus;%5Crho_%7BL%2Ce%7D%28T-T_%7Bref%2C%5Crho_L%7D%29%5E3)
+![](docs/images/equations/liquidDensity.png)
 
 with:
 - rho_La = 999.79684 kg/m^3
@@ -150,7 +150,7 @@ source: Popiel, C. O., and J. Wojtkowiak. "Simple formulas for thermophysical pr
 
 source: Lide, David R.: CRC Handbook of Chemistry and Physics. 90th Edition (Internet Version 2010). Boca Raton, FL. : CRC Press/Taylor and Francis, 2010.
 
-![](http://latex.codecogs.com/gif.latex?%5Crho_S%3D%5Crho_%7BS%2Ca%7D&plus;%5Crho_%7BS%2Cb%7D%28T-T_%7Bref%2C%5Crho_S%7D%29&plus;%5Crho_%7BS%2Cc%7D%28T-T_%7Bref%2C%5Crho_S%7D%29%5E2)
+![](docs/images/equations/solidDensity.png)
 
 Curve fitting yields for the tabular data:
 - rho_Sa = 9.169417e+2 kg/m^3
