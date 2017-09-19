@@ -21,27 +21,16 @@ License
     You should have received a copy of the GNU General Public License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
+Reference
+    Kai Schueller (schueller@aices.rwth-aachen.de)
+    Aachen Institude for Advanced Study in Computational Engineering Science (AICES)
+
 Application
-    buoyantBoussinesqPimpleFoam
+    CoMeTFoam
 
 Description
-    Transient solver for buoyant, turbulent flow of incompressible fluids.
-
-    Uses the Boussinesq approximation:
-    \f[
-        rho_{k} = 1 - beta(T - T_{ref})
-    \f]
-
-    where:
-        \f$ rho_{k} \f$ = the effective (driving) kinematic density
-        beta = thermal expansion coefficient [1/K]
-        T = temperature [K]
-        \f$ T_{ref} \f$ = reference temperature [K]
-
-    Valid when:
-    \f[
-        \frac{beta(T - T_{ref})}{rho_{ref}} << 1
-    \f]
+    Transient solver for incompressible convection diffusion phase change. The solver is based on
+    buoyantBoussinesqPimpleFoam. Convection is induced by Boussinesq approximation.
 
 \*---------------------------------------------------------------------------*/
 
@@ -68,6 +57,13 @@ int main(int argc, char *argv[])
     #include "initContinuityErrs.H"
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+    // read some control values
+    const dictionary& phasechangeDict = mesh.solutionDict().subDict("PHASECHANGE");
+    int minTiter(readLabel(phasechangeDict.lookup("minTiter")));
+    int maxTiter(readLabel(phasechangeDict.lookup("maxTiter")));
+    scalar gamma_L_Tol(readScalar(phasechangeDict.lookup("gamma_L_Tol")));
+    scalar relaxGamma_L(readScalar(phasechangeDict.lookup("relaxGamma_L")));
 
     Info<< "\nStarting time loop\n" << endl;
 

@@ -1,10 +1,6 @@
 {
 
     int iter = 0;
-    int minTiter = 2;
-    int maxTiter = 100;
-    float gamma_L_Tol = 1e-6;
-    scalar relaxGamma = 0.7;
 
     scalar residual = 1;
 
@@ -53,7 +49,7 @@
         TEqn.solve();
 
         Tcons = (T_L-T_S)*gamma_L+T_S;
-        gamma_L = max(min(gamma_L + relaxGamma*cp/h_m*(T - Tcons),scalar(1)),scalar(0));
+        gamma_L = max(min(gamma_L + relaxGamma_L*cp/h_m*(T - Tcons),scalar(1)),scalar(0));
 
         residual = gMax(mag(gamma_L.primitiveField() - gamma_L.prevIter().primitiveField()));
 
