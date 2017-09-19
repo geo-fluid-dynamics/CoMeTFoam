@@ -24,12 +24,26 @@ dimensionedScalar beta
 dimensionedScalar rho(transportProperties.lookup("rho"));
 
 // Reading specific heat capacity
-dimensionedScalar cp_S(transportProperties.lookup("cp_S"));
-dimensionedScalar cp_L(transportProperties.lookup("cp_L"));
+dimensionedScalar TRef_cp_S(transportProperties.lookup("TRef_cp_S"));
+dimensionedScalar cp_Sa(transportProperties.lookup("cp_Sa"));
+dimensionedScalar cp_Sb(transportProperties.lookup("cp_Sb"));
+dimensionedScalar cp_Sc(transportProperties.lookup("cp_Sc"));
+
+dimensionedScalar TRef_cp_L(transportProperties.lookup("TRef_cp_L"));
+dimensionedScalar cp_La(transportProperties.lookup("cp_La"));
+dimensionedScalar cp_Lb(transportProperties.lookup("cp_Lb"));
+dimensionedScalar cp_Lc(transportProperties.lookup("cp_Lc"));
 
 // Reading thermal conductivity
-dimensionedScalar k_S(transportProperties.lookup("k_S"));
-dimensionedScalar k_L(transportProperties.lookup("k_L"));
+dimensionedScalar TRef_k_S(transportProperties.lookup("TRef_k_S"));
+dimensionedScalar k_Sa(transportProperties.lookup("k_Sa"));
+dimensionedScalar k_Sb(transportProperties.lookup("k_Sb"));
+dimensionedScalar k_Sc(transportProperties.lookup("k_Sc"));
+
+dimensionedScalar TRef_k_L(transportProperties.lookup("TRef_k_L"));
+dimensionedScalar k_La(transportProperties.lookup("k_La"));
+dimensionedScalar k_Lb(transportProperties.lookup("k_Lb"));
+dimensionedScalar k_Lc(transportProperties.lookup("k_Lc"));
 
 // Latent heat of melting
 dimensionedScalar h_m(transportProperties.lookup("h_m"));
