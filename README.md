@@ -80,8 +80,10 @@ cd ../tests
 ```
 
 ## User instructions
+The default thermo-physical properties are those of a pure water-ice PCM. All of them can be modified in _constant/transportProperties_, which will be described in the following subsections.
+
 ### Setting the viscosity
-_CoMeTFoam_ provides the option to set a temperature dependent kinematic viscosity. This can be done by changing the values of _nua_, _nub_ and _nuc_ in _constant/transportProperties_.
+_CoMeTFoam_ provides the option to set a temperature dependent kinematic viscosity. This can be done by changing the values of _nua_, _nub_ and _nuc_.
 
 To give an example, we will now discuss how to choose the correct parameters for pure water. Its kinematic viscosity is summarized in the following table.
 
@@ -114,9 +116,12 @@ Curve fitting yields for the tabular data:
 ![Kinematic viscosity over temperature](docs/images/kinViscosityOverTemperature.png)
 
 ### Setting the density
-#### Liquid density
+The user has the option to set the densities (solid and liquid) in _constant/transportProperties_ by changing the coefficients of polynomials.
 
-![](http://latex.codecogs.com/gif.latex?%5Crho_L%3D%5Crho_La&plus;%5Crho_%7BL%2Cb%7D%28T-T_%7Bref%2C%5Crho_L%7D%29&plus;%5Crho_%7BL%2Cc%7D%28T-T_%7Bref%2C%5Crho_L%7D%29%5E2&plus;%5Crho_%7BL%2Cd%7D%28T-T_%7Bref%2C%5Crho_L%7D%29%5E%7B2.5%7D&plus;%5Crho_%7BL%2Ce%7D%28T-T_%7Bref%2C%5Crho_L%7D%29%5E3)
+#### Liquid density
+For the liquid PCM, the density polynomial is
+
+![](http://latex.codecogs.com/gif.latex?%5Crho_L%3D%5Crho_%7BL%2Ca%7D&plus;%5Crho_%7BL%2Cb%7D%28T-T_%7Bref%2C%5Crho_L%7D%29&plus;%5Crho_%7BL%2Cc%7D%28T-T_%7Bref%2C%5Crho_L%7D%29%5E2&plus;%5Crho_%7BL%2Cd%7D%28T-T_%7Bref%2C%5Crho_L%7D%29%5E%7B2.5%7D&plus;%5Crho_%7BL%2Ce%7D%28T-T_%7Bref%2C%5Crho_L%7D%29%5E3)
 
 with:
 - rho_La = 999.79684 kg/m^3
@@ -125,6 +130,8 @@ with:
 - rho_Ld = 0.00082140905 kg/m^3/K^2.5
 - rho_Le = -2.3030988e-5 kg/m^3/K^3
 - TRef_rho_L = 273.15 K
+
+These values include the density anomaly (maximum density) of water near 4 °C.
 
 source: Popiel, C. O., and J. Wojtkowiak. "Simple formulas for thermophysical properties of liquid water for heat transfer calculations (from 0 C to 150 C)." Heat transfer engineering 19.3 (1998): 87-101.
 
