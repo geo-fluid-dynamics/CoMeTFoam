@@ -276,7 +276,7 @@ Additionally the order of grid convergence can be calculated using
 ```
 python calcConvergence.py
 ```
-which yields 1.45834902755 for the considered meshes (320, 640, 1280 cells).
+which yields 1.46450971187 for the considered meshes (320, 640, 1280 cells).
 
 ### Cavity melting
 Two cavity melting examples are provided - _cavity_ and _cavityVarViscosity_. The first one uses a constant kinematic viscosity, whereas the latter uses a temperature dependent kinematic viscosity. The following picture shows the difference of those two cases.

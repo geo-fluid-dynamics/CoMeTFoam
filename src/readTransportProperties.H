@@ -24,15 +24,9 @@ dimensionedScalar beta
 dimensionedScalar rho(transportProperties.lookup("rho"));
 
 // Reading specific heat capacity
-dimensionedScalar TRef_cp_S(transportProperties.lookup("TRef_cp_S"));
-dimensionedScalar cp_Sa(transportProperties.lookup("cp_Sa"));
-dimensionedScalar cp_Sb(transportProperties.lookup("cp_Sb"));
-dimensionedScalar cp_Sc(transportProperties.lookup("cp_Sc"));
+dimensionedScalar cp_S(transportProperties.lookup("cp_S"));
 
-dimensionedScalar TRef_cp_L(transportProperties.lookup("TRef_cp_L"));
-dimensionedScalar cp_La(transportProperties.lookup("cp_La"));
-dimensionedScalar cp_Lb(transportProperties.lookup("cp_Lb"));
-dimensionedScalar cp_Lc(transportProperties.lookup("cp_Lc"));
+dimensionedScalar cp_L(transportProperties.lookup("cp_L"));
 
 // Reading thermal conductivity
 dimensionedScalar TRef_k_S(transportProperties.lookup("TRef_k_S"));

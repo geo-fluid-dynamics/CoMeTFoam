@@ -84,8 +84,7 @@ volScalarField cp
         runTime.timeName(),
         mesh
     ),
-    gamma_L*(cp_La+cp_Lb*(T-TRef_cp_L)+cp_Lc*pow(T-TRef_cp_L,2)) 
-            + (scalar(1) - gamma_L)*(cp_Sa+cp_Sb*(T-TRef_cp_S)+cp_Sc*pow(T-TRef_cp_S,2))
+    gamma_L*cp_L+ (scalar(1) - gamma_L)*cp_S
 );
 cp.oldTime();
 
