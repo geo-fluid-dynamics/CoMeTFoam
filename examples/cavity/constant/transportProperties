@@ -27,11 +27,8 @@ rho_Lc				rho_Lc [1 -3 0 -2 0 0 0] -0.010740248;
 rho_Ld				rho_Ld [1 -3 0 -2.5 0 0 0] 0.00082140905;
 rho_Le				rho_Le [1 -3 0 -3 0 0 0] -2.3030988e-5;
 
-// liquid specific heat quadratic polynomial (cp_L=cp_La+cp_Lb*(T-TRef_cp_L)+cp_Lc*(T-TRef_cp_L)^2)
-TRef_cp_L			TRef_cp_L [0 0 0 1 0 0 0] 273.15;
-cp_La             	cp_La [0 2 -2 -1 0 0 0] 4.213021e+03;
-cp_Lb             	cp_Lb [0 2 -2 -2 0 0 0] -1.488785e+00;
-cp_Lc             	cp_Lc [0 2 -2 -3 0 0 0] 1.559599e-02;
+// liquid specific heat
+cp_L             	cp_L [0 2 -2 -1 0 0 0] 4195.2;
 
 // liquid thermal conductivity quadratic polynomial (k_L=k_La+k_Lb*(T-TRef_k_L)+k_Lc*(T-TRef_k_L)^2)
 TRef_k_L			TRef_k_L [0 0 0 1 0 0 0] 273.15;
@@ -52,11 +49,8 @@ rho_Sa				rho_Sa [1 -3 0 0 0 0 0] 9.169417e+2;
 rho_Sb				rho_Sb [1 -3 0 -1 0 0 0] -1.652339e-1;
 rho_Sc				rho_Sc [1 -3 0 -2 0 0 0] -4.320109e-4;
 
-// solid specific heat quadratic polynomial (cp_S=cp_Sa+cp_Sb*(T-TRef_cp_S)+cp_Sc*(T-TRef_cp_S)^2)
-TRef_cp_S			TRef_cp_S [0 0 0 1 0 0 0] 273.15;
-cp_Sa             	cp_Sa [0 2 -2 -1 0 0 0] 2.111883e+03;
-cp_Sb             	cp_Sb [0 2 -2 -2 0 0 0] 7.963648e+00;
-cp_Sc             	cp_Sc [0 2 -2 -3 0 0 0] 4.269703e-03;
+// solid specific heat
+cp_S             	cp_S [0 2 -2 -1 0 0 0] 2030.0;
 
 // solid thermal conductivity quadratic polynomial (k_S=k_Sa+k_Sb*(T-TRef_k_S)+k_Sc*(T-TRef_k_S)^2)
 TRef_k_S			TRef_k_S [0 0 0 1 0 0 0] 273.15;

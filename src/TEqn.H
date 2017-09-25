@@ -20,8 +20,7 @@
                                       +rho_Sc*pow(T-TRef_rho_L,2));
 
         // mixture specific heat
-        cp = gamma_L*(cp_La+cp_Lb*(T-TRef_cp_L)+cp_Lc*pow(T-TRef_cp_L,2)) 
-            + (scalar(1) - gamma_L)*(cp_Sa+cp_Sb*(T-TRef_cp_S)+cp_Sc*pow(T-TRef_cp_S,2));
+        cp = gamma_L*cp_L+ (scalar(1) - gamma_L)*cp_S;
 
         rhomixPhiCp = fvc::interpolate(cp)*phi*fvc::interpolate(rhomix);
 
@@ -37,10 +36,8 @@
         (
             fvm::ddt(rhomixCp,T)
           + fvm::div(rhomixPhiCp, T)
-          + h_m*fvc::ddt(rhomix,gamma_L)
-          + h_m*fvc::div(rhomixPhi, gamma_L)
-          - T_m*fvc::ddt(rhomixCp)
-          - T_m*fvc::div(rhomixPhiCp)
+          + (h_m+(cp_S-cp_L)*T_m)*fvc::ddt(rhomix,gamma_L)
+          + (h_m+(cp_S-cp_L)*T_m)*fvc::div(rhomixPhi, gamma_L)
           - fvm::laplacian(k, T)
         );
 
