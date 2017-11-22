@@ -58,7 +58,7 @@ volScalarField gamma_L
         IOobject::NO_READ,
         IOobject::AUTO_WRITE
     ),
-    max(min((T-T_L)/T_L,scalar(1)),scalar(0))
+    max(min((T-T_L)/(T_L-T_S),scalar(1)),scalar(0))
 );
 gamma_L.write();
 
